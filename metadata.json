@@ -1,0 +1,6 @@
+{
+  "name": "JALPATH AI – School Water Rescue & Rainwater Intelligence",
+  "description": "AI-Assisted School Water Rescue & Rainwater Intelligence System for Quest4Earth 2026. Every Drop Has a Destination.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

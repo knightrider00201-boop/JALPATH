@@ -1,0 +1,906 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: 'Inter', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-hindi: 'Noto Sans Devanagari', sans-serif;
+
+    /* Premium Aqua + Deep Navy Theme Colors */
+    --color-navy-darkest: #050B17;
+    --color-navy-dark: #0A1326;
+    --color-navy-card: #0D1933;
+    --color-navy-elevated: #112246;
+    --color-navy-border: #1E3A8A;
+    --color-aqua-primary: #00E5FF;
+    --color-aqua-soft: #38BDF8;
+    --color-aqua-deep: #0284C7;
+
+    /* Theme-aware canvas and scrollbar tokens */
+    --app-bg: #050B17;
+    --app-text: #F8FAFC;
+    --scrollbar-track: #050B17;
+    --scrollbar-thumb: #112246;
+    --scrollbar-thumb-border: #1E3A8A;
+    --scrollbar-thumb-hover: #00E5FF;
+  }
+
+  :root.theme-frost,
+  html.theme-frost {
+    --app-bg: #F0F9FF;
+    --app-text: #0F172A;
+    --scrollbar-track: #E0F2FE;
+    --scrollbar-thumb: #7DD3FC;
+    --scrollbar-thumb-border: #38BDF8;
+    --scrollbar-thumb-hover: #0284C7;
+  }
+
+  html, body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden !important;
+    margin: 0;
+    padding: 0;
+    background-color: var(--app-bg) !important;
+    color: var(--app-text);
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track) !important;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb) !important;
+  border-radius: 4px;
+  border: 1px solid var(--scrollbar-thumb-border) !important;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover) !important;
+}
+
+/* Glassmorphism & Aqua Glow */
+.aqua-glow {
+  box-shadow: 0 0 35px -5px rgba(6, 182, 212, 0.3);
+}
+
+.aqua-glow-sm {
+  box-shadow: 0 0 18px -3px rgba(6, 182, 212, 0.2);
+}
+
+/* Default Navy Card */
+.navy-card {
+  background: linear-gradient(135deg, rgba(13, 25, 51, 0.92) 0%, rgba(10, 19, 38, 0.94) 100%);
+  border: 1px solid rgba(30, 58, 138, 0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navy-card:hover {
+  border-color: rgba(6, 182, 212, 0.5);
+  box-shadow: 0 12px 36px -10px rgba(6, 182, 212, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Ultra-Glossy Frost Ice-Blue Theme overrides - 100% High Contrast & Full Visibility */
+.theme-frost {
+  background-color: #F0F9FF !important;
+  color: #0F172A !important;
+}
+
+/* Clear dark section backgrounds so crisp frost background displays */
+.theme-frost section {
+  background-color: transparent !important;
+  background-image: none !important;
+  border-bottom-color: #BAE6FD !important;
+}
+
+.theme-frost #prototype {
+  background: linear-gradient(180deg, #F0F9FF 0%, #E0F2FE 50%, #F0F9FF 100%) !important;
+}
+
+/* 1. ALL HEADINGS (h1 - h6) */
+.theme-frost h1,
+.theme-frost h2,
+.theme-frost h3,
+.theme-frost h4,
+.theme-frost h5,
+.theme-frost h6 {
+  color: #0F172A !important;
+}
+
+/* Gradient Headings with Clip Text */
+.theme-frost .bg-clip-text {
+  background-image: linear-gradient(135deg, #020617 0%, #0369A1 100%) !important;
+  -webkit-background-clip: text !important;
+  color: transparent !important;
+}
+
+/* 2. UNIVERSAL TEXT COLOR CONTRAST */
+.theme-frost .text-white {
+  color: #0F172A !important;
+}
+
+.theme-frost [class*="text-slate-100"],
+.theme-frost [class*="text-slate-200"] {
+  color: #0F172A !important;
+}
+
+.theme-frost [class*="text-slate-300"] {
+  color: #1E293B !important; /* slate-800 - ultra clear and dark */
+}
+
+.theme-frost [class*="text-slate-400"] {
+  color: #334155 !important; /* slate-700 - clearly legible */
+}
+
+.theme-frost [class*="text-slate-500"] {
+  color: #475569 !important; /* slate-600 */
+}
+
+/* Cyan & Sky text -> Deep Saturated Ocean Blue */
+.theme-frost [class*="text-cyan-"],
+.theme-frost [class*="text-sky-"] {
+  color: #0369A1 !important; /* sky-700 */
+}
+
+/* Teal text -> Dark Forest Teal */
+.theme-frost [class*="text-teal-"] {
+  color: #0F766E !important; /* teal-700 */
+}
+
+/* Amber text -> Deep Readable Warm Amber */
+.theme-frost [class*="text-amber-"] {
+  color: #92400E !important; /* amber-800 */
+}
+
+/* Red & Rose text -> Deep Readable Crimson */
+.theme-frost [class*="text-red-"],
+.theme-frost [class*="text-rose-"] {
+  color: #991B1B !important; /* red-800 */
+}
+
+/* Emerald text -> Dark Readable Emerald */
+.theme-frost [class*="text-emerald-"] {
+  color: #065F46 !important; /* emerald-800 */
+}
+
+/* 3. SOLID CARDS & PANELS */
+/* Main outer cards */
+.theme-frost .navy-card,
+.theme-frost [class*="bg-slate-900"] {
+  background-color: #FFFFFF !important;
+  background-image: none !important;
+  border-color: #BAE6FD !important;
+  color: #0F172A !important;
+  box-shadow: 0 4px 16px -2px rgba(2, 132, 199, 0.08), 0 1px 3px 0 rgba(0, 0, 0, 0.04) !important;
+}
+
+.theme-frost .navy-card:hover,
+.theme-frost [class*="bg-slate-900"]:hover {
+  border-color: #38BDF8 !important;
+  box-shadow: 0 12px 28px -4px rgba(2, 132, 199, 0.16) !important;
+}
+
+/* Inner sub-panels and nested boxes */
+.theme-frost [class*="bg-slate-950"] {
+  background-color: #F0F9FF !important; /* Soft ice-blue panel */
+  background-image: none !important;
+  border-color: #BAE6FD !important;
+  color: #0F172A !important;
+}
+
+/* Neutral small boxes and pills */
+.theme-frost [class*="bg-slate-800"],
+.theme-frost [class*="bg-slate-700"] {
+  background-color: #E2E8F0 !important;
+  background-image: none !important;
+  border-color: #CBD5E1 !important;
+  color: #1E293B !important;
+}
+
+/* 4. GRADIENT ALERT BANNERS & ACCENT CARDS (High Visibility Frosted Panels) */
+/* Amber alert cards & banners (e.g. Critical Failure Point in Hero, 1000L Burst Tank) */
+.theme-frost [class*="from-amber-950"],
+.theme-frost [class*="from-amber-900"],
+.theme-frost [class*="bg-amber-950/"],
+.theme-frost .prototype-boundaries-card,
+.theme-frost [class*="to-amber-950"] {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFFBEB 100%) !important;
+  border: 1.5px solid #FCD34D !important;
+  color: #78350F !important;
+  box-shadow: 0 4px 16px -2px rgba(245, 158, 11, 0.12) !important;
+}
+
+.theme-frost [class*="from-amber-950"] *,
+.theme-frost [class*="from-amber-900"] *,
+.theme-frost [class*="bg-amber-950/"] * {
+  color: #78350F !important;
+}
+
+.theme-frost [class*="from-amber-950"] [class*="text-amber-"],
+.theme-frost [class*="from-amber-900"] [class*="text-amber-"],
+.theme-frost [class*="bg-amber-950/"] [class*="text-amber-"] {
+  color: #92400E !important;
+}
+
+/* Specific high-contrast overrides for Prototype Boundaries card in Technology section */
+.theme-frost .prototype-boundaries-card h3,
+.theme-frost [class*="to-amber-950"] h3 {
+  color: #B45309 !important; /* Rich readable amber-700 */
+}
+
+.theme-frost .prototype-boundaries-card p,
+.theme-frost [class*="to-amber-950"] p {
+  color: #334155 !important; /* Clear dark slate-700 */
+}
+
+.theme-frost .prototype-boundaries-card ul li,
+.theme-frost [class*="to-amber-950"] ul li {
+  color: #334155 !important;
+}
+
+.theme-frost .prototype-boundaries-card strong,
+.theme-frost [class*="to-amber-950"] strong {
+  color: #0F172A !important; /* Dark bold headings */
+}
+
+.theme-frost .prototype-boundaries-card span.rounded-full,
+.theme-frost [class*="to-amber-950"] span.rounded-full {
+  background-color: #D97706 !important;
+}
+
+/* Red / Danger alert cards (e.g. Diagnostic Failure Point, Ground Reality 0L) */
+.theme-frost [class*="from-red-950"],
+.theme-frost [class*="from-rose-950"],
+.theme-frost [class*="bg-red-950/"],
+.theme-frost [class*="bg-rose-950/"] {
+  background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%) !important;
+  border-color: #EF4444 !important;
+  color: #7F1D1D !important;
+  box-shadow: 0 4px 14px -2px rgba(239, 68, 68, 0.15) !important;
+}
+
+.theme-frost [class*="from-red-950"] *,
+.theme-frost [class*="from-rose-950"] *,
+.theme-frost [class*="bg-red-950/"] *,
+.theme-frost [class*="bg-rose-950/"] * {
+  color: #7F1D1D !important;
+}
+
+.theme-frost [class*="from-red-950"] [class*="text-red-"],
+.theme-frost [class*="from-rose-950"] [class*="text-red-"],
+.theme-frost [class*="bg-red-950/"] [class*="text-red-"],
+.theme-frost [class*="bg-rose-950/"] [class*="text-red-"] {
+  color: #991B1B !important;
+}
+
+/* Cyan / Blue simulation yield cards (e.g. Calculator Result card) */
+.theme-frost [class*="from-slate-900"][class*="to-cyan-950"],
+.theme-frost [class*="bg-cyan-950/"] {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F0F9FF 100%) !important;
+  border-color: #38BDF8 !important;
+  color: #0C4A6E !important;
+  box-shadow: 0 4px 14px -2px rgba(2, 132, 199, 0.12) !important;
+}
+
+.theme-frost [class*="from-slate-900"][class*="to-cyan-950"] *,
+.theme-frost [class*="bg-cyan-950/"] * {
+  color: #0C4A6E !important;
+}
+
+/* Teal accent cards (e.g. Audit summary card) */
+.theme-frost [class*="bg-teal-950/"] {
+  background: linear-gradient(135deg, #F0FDFA 0%, #CCFBF1 100%) !important;
+  border-color: #14B8A6 !important;
+  color: #134E4A !important;
+}
+
+.theme-frost [class*="bg-teal-950/"] * {
+  color: #134E4A !important;
+}
+
+.theme-frost [class*="bg-teal-950/"] [class*="text-teal-"] {
+  color: #0F766E !important;
+}
+
+/* 5. CATEGORY & STATUS BADGES */
+.theme-frost [class*="bg-cyan-950"],
+.theme-frost [class*="bg-sky-950"] {
+  background-color: #E0F2FE !important;
+  border-color: #7DD3FC !important;
+  color: #0369A1 !important;
+}
+
+.theme-frost [class*="bg-amber-950"],
+.theme-frost [class*="bg-amber-900"] {
+  background-color: #FEF3C7 !important;
+  border-color: #FCD34D !important;
+  color: #92400E !important;
+}
+
+.theme-frost [class*="bg-red-950"],
+.theme-frost [class*="bg-red-900"],
+.theme-frost [class*="bg-rose-950"] {
+  background-color: #FEE2E2 !important;
+  border-color: #FCA5A5 !important;
+  color: #991B1B !important;
+}
+
+.theme-frost [class*="bg-emerald-950"] {
+  background-color: #D1FAE5 !important;
+  border-color: #6EE7B7 !important;
+  color: #065F46 !important;
+}
+
+.theme-frost [class*="bg-teal-950"] {
+  background-color: #CCFBF1 !important;
+  border-color: #5EEAD4 !important;
+  color: #0F766E !important;
+}
+
+/* 6. ALL BUTTONS - CRISP CONTRAST EXCEPTION */
+/* Primary gradient buttons, blue buttons, red buttons, and active tabs MUST keep white text */
+.theme-frost button[class*="bg-gradient-to-r"],
+.theme-frost button[class*="bg-cyan-600"],
+.theme-frost button[class*="bg-sky-600"],
+.theme-frost button[class*="bg-blue-600"],
+.theme-frost button[class*="bg-red-600"],
+.theme-frost button[class*="bg-rose-600"],
+.theme-frost button[class*="bg-emerald-600"],
+.theme-frost button[class*="bg-teal-600"],
+.theme-frost a[class*="bg-gradient-to-r"],
+.theme-frost a[class*="bg-red-600"] {
+  color: #FFFFFF !important;
+}
+
+.theme-frost button[class*="bg-gradient-to-r"] *,
+.theme-frost button[class*="bg-cyan-600"] *,
+.theme-frost button[class*="bg-sky-600"] *,
+.theme-frost button[class*="bg-blue-600"] *,
+.theme-frost button[class*="bg-red-600"] *,
+.theme-frost button[class*="bg-rose-600"] *,
+.theme-frost button[class*="bg-emerald-600"] *,
+.theme-frost button[class*="bg-teal-600"] *,
+.theme-frost a[class*="bg-gradient-to-r"] *,
+.theme-frost a[class*="bg-red-600"] * {
+  color: #FFFFFF !important;
+}
+
+/* Amber Action Buttons (e.g. Inspect Failure in Hero) - Solid Rich Amber with White Text */
+.theme-frost .hero-inspect-failure-btn,
+.theme-frost button[class*="bg-amber-900"],
+.theme-frost button[class*="bg-amber-800"],
+.theme-frost a[class*="bg-amber-900"] {
+  background-color: #B45309 !important; /* Solid rich amber */
+  border-color: #78350F !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 6px -1px rgba(180, 83, 9, 0.4) !important;
+}
+
+.theme-frost .hero-inspect-failure-btn:hover,
+.theme-frost button[class*="bg-amber-900"]:hover,
+.theme-frost button[class*="bg-amber-800"]:hover {
+  background-color: #92400E !important;
+  border-color: #78350F !important;
+}
+
+.theme-frost .hero-inspect-failure-btn *,
+.theme-frost button[class*="bg-amber-900"] *,
+.theme-frost button[class*="bg-amber-800"] * {
+  color: #FFFFFF !important;
+}
+
+/* Bright Cyan Action Buttons (e.g. explore prototype, calculate, save log) */
+.theme-frost button[class*="bg-cyan-500"],
+.theme-frost button[class*="bg-cyan-400"] {
+  background-color: #0284C7 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px -2px rgba(2, 132, 199, 0.35) !important;
+}
+
+.theme-frost button[class*="bg-cyan-500"] *,
+.theme-frost button[class*="bg-cyan-400"] * {
+  color: #FFFFFF !important;
+}
+
+/* Secondary outline buttons (slate-900 / slate-800 button) */
+.theme-frost button[class*="bg-slate-900"],
+.theme-frost a[class*="bg-slate-900"],
+.theme-frost button[class*="bg-slate-800"],
+.theme-frost a[class*="bg-slate-800"] {
+  background-color: #FFFFFF !important;
+  border-color: #BAE6FD !important;
+  color: #0369A1 !important;
+}
+
+.theme-frost button[class*="bg-slate-900"]:hover,
+.theme-frost a[class*="bg-slate-900"]:hover,
+.theme-frost button[class*="bg-slate-800"]:hover,
+.theme-frost a[class*="bg-slate-800"]:hover {
+  background-color: #F0F9FF !important;
+  border-color: #38BDF8 !important;
+  color: #0284C7 !important;
+}
+
+/* 7. FORM CONTROLS (Inputs, Selects, Textareas) */
+.theme-frost input,
+.theme-frost select,
+.theme-frost textarea {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border: 1.5px solid #BAE6FD !important;
+  box-shadow: 0 1px 2px rgba(2, 132, 199, 0.05) !important;
+}
+
+.theme-frost input:focus,
+.theme-frost select:focus,
+.theme-frost textarea:focus {
+  border-color: #0284C7 !important;
+  outline: 2px solid rgba(2, 132, 199, 0.25) !important;
+}
+
+.theme-frost input::placeholder,
+.theme-frost textarea::placeholder {
+  color: #64748B !important;
+}
+
+/* 8. TABLES */
+.theme-frost table {
+  background-color: #FFFFFF !important;
+  border: 1px solid #BAE6FD !important;
+}
+
+.theme-frost th {
+  background-color: #E0F2FE !important;
+  color: #0C4A6E !important;
+  border-bottom: 2px solid #BAE6FD !important;
+  font-weight: 800 !important;
+}
+
+.theme-frost td {
+  border-bottom: 1px solid #E0F2FE !important;
+  color: #1E293B !important;
+}
+
+.theme-frost tr:hover td {
+  background-color: #F0F9FF !important;
+}
+
+/* 9. NAVBAR & FOOTER */
+.theme-frost header {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid #BAE6FD !important;
+  box-shadow: 0 4px 20px -2px rgba(2, 132, 199, 0.08) !important;
+}
+
+.theme-frost footer {
+  background: #E0F2FE !important;
+  border-top: 1px solid #BAE6FD !important;
+  color: #334155 !important;
+}
+
+.theme-frost footer h4 {
+  color: #0F172A !important;
+}
+
+/* 10. BORDERS ACROSS CARDS */
+.theme-frost [class*="border-slate-800"],
+.theme-frost [class*="border-slate-700"],
+.theme-frost [class*="border-cyan-800"],
+.theme-frost [class*="border-cyan-900"] {
+  border-color: #BAE6FD !important;
+}
+
+/* 11. ISOLATED DARK EXCEPTIONS (Hero 3D Badges, Photo Overlays, Hydraulic Simulation & Presentation Mode) */
+.theme-frost [data-keep-dark="true"],
+.theme-frost .hydraulic-simulation-canvas,
+.theme-frost .hero-water-badge {
+  background-color: #050B17 !important;
+  border-color: rgba(6, 182, 212, 0.8) !important;
+  color: #FFFFFF !important;
+}
+
+/* Ensure inner panels inside dark simulation canvas DO NOT become white */
+.theme-frost [data-keep-dark="true"] [class*="bg-slate-950"],
+.theme-frost .hydraulic-simulation-canvas [class*="bg-slate-950"],
+.theme-frost [data-keep-dark="true"] [class*="bg-slate-900"],
+.theme-frost .hydraulic-simulation-canvas [class*="bg-slate-900"] {
+  background-color: #081226 !important;
+  background-image: none !important;
+  border-color: #1E3A8A !important;
+  color: #F8FAFC !important;
+}
+
+.theme-frost [data-keep-dark="true"] [class*="bg-slate-800"],
+.theme-frost .hydraulic-simulation-canvas [class*="bg-slate-800"] {
+  background-color: #1E293B !important;
+  background-image: none !important;
+  border-color: #334155 !important;
+  color: #F8FAFC !important;
+}
+
+/* High contrast text inside dark simulation viewport */
+.theme-frost [data-keep-dark="true"] [class*="text-white"],
+.theme-frost .hydraulic-simulation-canvas [class*="text-white"] {
+  color: #FFFFFF !important;
+}
+
+.theme-frost [data-keep-dark="true"] [class*="text-slate-300"],
+.theme-frost .hydraulic-simulation-canvas [class*="text-slate-300"] {
+  color: #CBD5E1 !important; /* Crisp light slate */
+}
+
+.theme-frost [data-keep-dark="true"] [class*="text-slate-400"],
+.theme-frost .hydraulic-simulation-canvas [class*="text-slate-400"] {
+  color: #94A3B8 !important;
+}
+
+.theme-frost [data-keep-dark="true"] [class*="text-cyan-"],
+.theme-frost .hydraulic-simulation-canvas [class*="text-cyan-"],
+.theme-frost [data-keep-dark="true"] [class*="text-sky-"],
+.theme-frost .hydraulic-simulation-canvas [class*="text-sky-"],
+.theme-frost .hero-water-badge [class*="text-cyan-"] {
+  color: #38BDF8 !important;
+}
+
+.theme-frost [data-keep-dark="true"] [class*="text-amber-"],
+.theme-frost .hydraulic-simulation-canvas [class*="text-amber-"],
+.theme-frost .hero-water-badge [class*="text-amber-"] {
+  color: #FBBF24 !important;
+}
+
+.theme-frost [data-keep-dark="true"] [class*="text-red-"],
+.theme-frost .hydraulic-simulation-canvas [class*="text-red-"] {
+  color: #F87171 !important;
+}
+
+.theme-frost [data-keep-dark="true"] [class*="text-emerald-"],
+.theme-frost .hydraulic-simulation-canvas [class*="text-emerald-"],
+.theme-frost .hero-water-badge [class*="text-emerald-"] {
+  color: #34D399 !important;
+}
+
+/* Red failure badges inside dark simulator & Dedicated Inlet Lip Elevated Badge */
+.theme-frost [data-keep-dark="true"] [class*="bg-red-950"],
+.theme-frost .hydraulic-simulation-canvas [class*="bg-red-950"] {
+  background-color: #7F1D1D !important;
+  border-color: #EF4444 !important;
+  color: #FFFFFF !important;
+}
+
+.theme-frost [data-keep-dark="true"] [class*="bg-red-950"] *,
+.theme-frost .hydraulic-simulation-canvas [class*="bg-red-950"] * {
+  color: #FFFFFF !important;
+}
+
+/* 3rd Picture Fix: Inlet Lip is Elevated Badge - 100% High Contrast & High Legibility */
+.theme-frost .inlet-lip-elevation-badge,
+.theme-frost .hydraulic-simulation-canvas .inlet-lip-elevation-badge {
+  background-color: #7F1D1D !important;
+  background-image: linear-gradient(135deg, #7F1D1D 0%, #991B1B 100%) !important;
+  border: 1.5px solid #EF4444 !important;
+  box-shadow: 0 4px 16px rgba(127, 29, 29, 0.5) !important;
+}
+
+.theme-frost .inlet-lip-elevation-badge *,
+.theme-frost .hydraulic-simulation-canvas .inlet-lip-elevation-badge * {
+  color: #FFFFFF !important;
+}
+
+.theme-frost .inlet-lip-elevation-badge .inlet-lip-title,
+.theme-frost .hydraulic-simulation-canvas .inlet-lip-elevation-badge .inlet-lip-title,
+.theme-frost .inlet-lip-elevation-badge span:first-child {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) !important;
+  display: block !important;
+}
+
+.theme-frost .inlet-lip-elevation-badge .inlet-lip-desc,
+.theme-frost .hydraulic-simulation-canvas .inlet-lip-elevation-badge .inlet-lip-desc,
+.theme-frost .inlet-lip-elevation-badge span:last-child {
+  color: #FEE2E2 !important;
+  font-weight: 600 !important;
+  display: block !important;
+}
+
+/* Emerald success badge (FLOW ESTABLISHED) inside dark simulator */
+.theme-frost [data-keep-dark="true"] [class*="bg-emerald-950"],
+.theme-frost .hydraulic-simulation-canvas [class*="bg-emerald-950"] {
+  background-color: #064E3B !important;
+  border-color: #059669 !important;
+  color: #A7F3D0 !important;
+}
+
+.theme-frost [data-keep-dark="true"] [class*="bg-emerald-950"] *,
+.theme-frost .hydraulic-simulation-canvas [class*="bg-emerald-950"] * {
+  color: #A7F3D0 !important;
+}
+
+/* 12. 1st & 2nd Pictures Fix: SCHOOL STUDY SITE PHOTO OVERLAY BARS (Frosted Glass Transformation) */
+/* The dark navy bars and harsh dark scrim become sleek, elegant frosted glass in Frost Ice */
+.theme-frost .school-photo-scrim {
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.45) 0%, transparent 40%, rgba(15, 23, 42, 0.2) 100%) !important;
+}
+
+/* Top bar: Verified Study Site pill */
+.theme-frost .school-badge-verified {
+  background: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1.5px solid #10B981 !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.16) !important;
+}
+
+.theme-frost .school-badge-verified,
+.theme-frost .school-badge-verified * {
+  color: #065F46 !important;
+  font-weight: 700 !important;
+}
+
+.theme-frost .school-badge-verified span.animate-ping,
+.theme-frost .school-badge-verified span.bg-emerald-400 {
+  background-color: #059669 !important;
+}
+
+/* Top bar: U-DISE Code pill */
+.theme-frost .school-badge-udise {
+  background: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1.5px solid #0284C7 !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.16) !important;
+}
+
+.theme-frost .school-badge-udise,
+.theme-frost .school-badge-udise * {
+  color: #0369A1 !important;
+  font-weight: 700 !important;
+}
+
+/* Bottom bar: Campus Title & Location Card */
+.theme-frost .school-badge-caption {
+  background: rgba(255, 255, 255, 0.96) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1.5px solid #BAE6FD !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.18), 0 2px 6px rgba(2, 132, 199, 0.1) !important;
+}
+
+.theme-frost .school-badge-title {
+  color: #0F172A !important;
+  font-weight: 800 !important;
+}
+
+.theme-frost .school-badge-location,
+.theme-frost .school-badge-location * {
+  color: #0284C7 !important;
+  font-weight: 600 !important;
+}
+
+/* Bottom bar: Fullscreen Button */
+.theme-frost .school-fullscreen-btn {
+  background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+  border: 1px solid #38BDF8 !important;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35) !important;
+}
+
+.theme-frost .school-fullscreen-btn,
+.theme-frost .school-fullscreen-btn * {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+.theme-frost .school-fullscreen-btn:hover {
+  background: linear-gradient(135deg, #0369A1 0%, #075985 100%) !important;
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.45) !important;
+}
+
+/* School Photo Modal Caption in Frost Mode */
+.theme-frost .school-modal-footer-caption {
+  background: #FFFFFF !important;
+  border-color: #BAE6FD !important;
+  color: #0F172A !important;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.2) !important;
+}
+
+.theme-frost .school-modal-footer-caption strong {
+  color: #0284C7 !important;
+}
+
+.theme-frost .school-modal-close-btn {
+  background-color: #E2E8F0 !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
+}
+
+.theme-frost .school-modal-close-btn:hover {
+  background-color: #CBD5E1 !important;
+}
+
+.theme-frost #judge-presentation-mode,
+.theme-frost [data-presentation-mode="true"] {
+  background-color: #050B17 !important;
+  color: #F8FAFC !important;
+}
+
+.theme-frost #judge-presentation-mode header,
+.theme-frost [data-presentation-mode="true"] header,
+.theme-frost #judge-presentation-mode footer,
+.theme-frost [data-presentation-mode="true"] footer {
+  background-color: #0A1326 !important;
+  border-color: rgba(30, 58, 138, 0.5) !important;
+}
+
+.theme-frost #judge-presentation-mode .text-white,
+.theme-frost [data-presentation-mode="true"] .text-white {
+  color: #FFFFFF !important;
+}
+
+.theme-frost #judge-presentation-mode [class*="text-slate-100"],
+.theme-frost [data-presentation-mode="true"] [class*="text-slate-100"],
+.theme-frost #judge-presentation-mode [class*="text-slate-200"],
+.theme-frost [data-presentation-mode="true"] [class*="text-slate-200"] {
+  color: #E2E8F0 !important;
+}
+
+.theme-frost #judge-presentation-mode [class*="text-slate-300"],
+.theme-frost [data-presentation-mode="true"] [class*="text-slate-300"],
+.theme-frost #judge-presentation-mode [class*="text-slate-400"],
+.theme-frost [data-presentation-mode="true"] [class*="text-slate-400"] {
+  color: #94A3B8 !important;
+}
+
+.theme-frost #judge-presentation-mode [class*="text-cyan-"],
+.theme-frost [data-presentation-mode="true"] [class*="text-cyan-"] {
+  color: #22D3EE !important;
+}
+
+.theme-frost #judge-presentation-mode [class*="bg-slate-900"],
+.theme-frost [data-presentation-mode="true"] [class*="bg-slate-900"],
+.theme-frost #judge-presentation-mode [class*="bg-slate-950"],
+.theme-frost [data-presentation-mode="true"] [class*="bg-slate-950"] {
+  background-color: #0D1933 !important;
+  border-color: #1E3A8A !important;
+  color: #F8FAFC !important;
+}
+
+/* Subtle animations */
+@keyframes waterPulse {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.92;
+  }
+  50% {
+    transform: translateY(-5px) scale(1.04);
+    opacity: 1;
+  }
+}
+
+.water-pulse {
+  animation: waterPulse 3.2s ease-in-out infinite;
+}
+
+@keyframes waterDrip {
+  0% {
+    transform: translateY(-10px) scale(0.8);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(22px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(28px) scale(1.4);
+    opacity: 0;
+  }
+}
+
+.water-drip-anim {
+  animation: waterDrip 1.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes waveFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.wave-flow-bg {
+  background: linear-gradient(90deg, #0A1326 0%, #0D1933 50%, #0A1326 100%);
+  background-size: 200% 200%;
+  animation: waveFlow 8s ease infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* A4 Print Optimization */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 14mm 14mm 14mm;
+  }
+  
+  body {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 10pt !important;
+    font-family: 'Inter', 'Noto Sans Devanagari', sans-serif !important;
+  }
+
+  .no-print, nav, footer, button, .interactive-controls, #presentation-bar, header {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .print-page-break {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  .print-page-break-after {
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .print-card {
+    background-color: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+    margin-bottom: 12px !important;
+  }
+
+  .print-text-dark {
+    color: #0f172a !important;
+  }
+
+  .print-text-muted {
+    color: #475569 !important;
+  }
+
+  a[href]:after {
+    content: none !important;
+  }
+}
